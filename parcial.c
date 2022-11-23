@@ -90,9 +90,6 @@ void mensual(int * recorridos, t_internos * internos)
     int codigo_recorrido;
     int pasajeros_transport;
     float recaudacion;
-    int recaudacion_max;
-    int es;
-    int recorrido_max;
 
     float recaudacion_por_recorrido[10] = {0};
     float recaudacion_por_interno[2000] = {0};
