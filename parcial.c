@@ -95,7 +95,7 @@ void mensual(int * recorridos, t_internos * internos)
     float recaudacion_por_interno[2000] = {0};
     float km_recorridos_por_interno[2000] = {0};
 
-    fscanf(fp, "%i%i%i%i%f", &dia, &numero_interno, &codigo_recorrido, &pasajeros_transport, &recaudacion);
+    fscanf(fp, "%i %i %i %i %f\n", &dia, &numero_interno, &codigo_recorrido, &pasajeros_transport, &recaudacion);
     while (!feof(fp))
     {
         int num_ant_intern = numero_interno;
@@ -106,7 +106,7 @@ void mensual(int * recorridos, t_internos * internos)
             recaudacion_por_recorrido[codigo_recorrido] += recaudacion;
             suma_recaudacion += recaudacion;
             suma_km = suma_km + recorridos[codigo_recorrido];
-            fscanf(fp, "%i%i%i%i%f", &dia, &numero_interno, &codigo_recorrido, &pasajeros_transport, &recaudacion);
+            fscanf(fp, "%i %i %i %i %f\n", &dia, &numero_interno, &codigo_recorrido, &pasajeros_transport, &recaudacion);
         }
         recaudacion_por_interno[num_ant_intern - 1001] = suma_recaudacion;
         km_recorridos_por_interno[num_ant_intern - 1001] = suma_km;
