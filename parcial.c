@@ -48,7 +48,7 @@
 #include <ctype.h>
 #define MAX 2000
 
-typedef struct  // 1
+typedef struct  // 1 Crear estructuras
 {
     int num_interno; // 1001 a 3000 consecutivos
     int km_recorr;
@@ -56,19 +56,11 @@ typedef struct  // 1
 } t_internos;
 
 typedef t_internos t_tabla_internos[MAX];
-// Se cuenta además con un archivos de texto MENSUAL.TXT con la siguiente información:
-// Día: Integer (1 al 30)
-// Número de interno: integer (1001 al 3000)
-// Código recorrido: integer (del 0 al 9)
-// Pasajeros transportados: integer
-// Recaudación: float
-// El archivo MENSUAL.TXT está agrupado por Número de Interno.
+void mensual(int * recorridos, t_internos * internos);
 
-void cargar_internos(t_internos *internos);
 int main()
 {
-    FILE *fp;
-    
+    // 1 Inicializar internos y recorridos
     int recorridos[10] = {12, 9, 13, 10, 8, 7, 9, 22, 11, 5};
     t_tabla_internos tabla_internos;
     t_internos interno;
@@ -76,7 +68,6 @@ int main()
     int i;
     for (i = 0; i < MAX; i++)
     {
-        //cargar_internos(&(tabla_internos[i]));
         interno.num_interno = i  + 1001;
         interno.dinero_recaud = 10 + rand() % 100;
         interno.km_recorr = 10 + rand() % 100;
@@ -86,18 +77,6 @@ int main()
     mensual(recorridos, tabla_internos);
 }
 
-void cargar_internos(t_internos *internos)
-{
-    printf("Datos internos: \n\n");
-    printf("Numero de interno: [del 1001 al 3000,consecutivos]\n");
-    scanf("%i", (*internos).num_interno);
-    getc(stdin);
-    printf("Kilometros recorridos: \n");
-    scanf("%i", (*internos).km_recorr);
-    getc(stdin);
-    (*internos).dinero_recaud = 10 + rand() % 100;
-    getc(stdin);
-}
 // 2) Procesar el archivo MENSUAL.TXT, utilizando la técnica de corte de control para:
 // a) actualizar la recaudación y los kilómetros recorridos del vector INTERNOS
 // b) Informar por pantalla el recorrido que más recaudó ese mes.
@@ -148,6 +127,8 @@ void mensual(int * recorridos, t_internos * internos)
     }
     printf("El recorrido con mayor recaudación es: %i", indice_mayor); 
     fclose(fp);
+    // 2 a) Actualizar internos
+    // En caso de que el vector de internos esté en un archivo binario seguir los pasos comentados
     // Abrir el archivo binario
     for (int i = 0; i < 2000; i++)
     {
